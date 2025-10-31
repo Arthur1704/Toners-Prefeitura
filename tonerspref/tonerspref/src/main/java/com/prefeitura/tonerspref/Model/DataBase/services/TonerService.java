@@ -1,0 +1,61 @@
+package com.prefeitura.tonerspref.Model.DataBase.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+
+import com.prefeitura.tonerspref.Model.DataBase.repositories.TonerRepository;
+import com.prefeitura.tonerspref.Model.entities.Toner;
+
+@Service
+public class TonerService {
+
+    @Autowired
+    TonerRepository tonerRepository;
+
+    public void insert(Toner toner){
+        try{
+        tonerRepository.save(toner);
+        } catch (DataAccessException e) {
+            System.out.println("Erro ao inserir toner: " + e.getMessage());
+        }
+    }
+
+    public void delete(Long id) {
+        try{
+        tonerRepository.deleteById(id);
+        } catch (DataAccessException e) {
+            System.out.println("Erro ao deletar toner: " + e.getMessage());
+        }
+    }
+
+    public Toner findById(Long id) {
+        try{
+        return tonerRepository.findById(id).orElse(null);
+        } catch (DataAccessException e) {
+            System.out.println("Erro ao buscar toner: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public List<Toner> findAll() {
+        try{
+        return tonerRepository.findAll();
+        } catch (DataAccessException e) {
+            System.out.println("Erro ao buscar toners: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public void update(Toner toner) {
+        try{
+        tonerRepository.save(toner);
+        } catch (DataAccessException e) {
+            System.out.println("Erro ao atualizar toner: " + e.getMessage());
+        }
+    }   
+
+
+}

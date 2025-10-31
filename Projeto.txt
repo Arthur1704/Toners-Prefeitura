@@ -1,0 +1,12 @@
+Sistema de Gerenciamento de Toners Prefeitura 
+
+
+Sistema de Login
+
+CRUD toners 
+
+Toner 
+-id
+-modelo
+-quantidade
+-impressoras compatíveis

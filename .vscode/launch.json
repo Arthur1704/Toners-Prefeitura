@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TonersprefApplication<tonerspref>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.prefeitura.tonerspref.TonersprefApplication",
+            "projectName": "tonerspref",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
