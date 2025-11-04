@@ -21,5 +21,27 @@
       </ul>
     </div>
   </nav>
+
+  <div class="content-container">
+    <h2>Lista de Toners e Impressoras Compatíveis</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Modelo</th>
+          <th>Quantidade</th>
+          <th>Impressoras Compatíveis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="toner : ${toners}">
+          <td th:text="${toner.id}"></td>
+          <td th:text="${toner.model}"></td>
+          <td th:text="${toner.quantity}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
