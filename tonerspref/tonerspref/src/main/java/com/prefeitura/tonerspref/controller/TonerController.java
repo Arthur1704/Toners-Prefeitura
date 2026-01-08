@@ -18,9 +18,10 @@ public class TonerController {
 
     @GetMapping("/toners")
     public ModelAndView viewTonersPage() {
-        return new ModelAndView("toners");
+        ModelAndView mv = new ModelAndView("toners");
+        mv.addObject("toners", tonerService.findAll());
+        return mv;
     }
-
 
     @GetMapping("/inserirToner")
     public ModelAndView viewInserirTonerPage() {
@@ -30,8 +31,6 @@ public class TonerController {
     @PostMapping("/toners/salvar")
     public ModelAndView inserirToner(@RequestParam String modelo, @RequestParam int quantidade) {
         tonerService.insert(new Toner(modelo, quantidade));
-        ModelAndView mv = new ModelAndView("redirect:/toners");
-        return mv;
+        return new ModelAndView("redirect:/toners");
     }
-
 }
