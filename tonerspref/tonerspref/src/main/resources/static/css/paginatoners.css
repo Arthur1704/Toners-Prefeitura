@@ -51,8 +51,13 @@
 .btn-voltar {
   background-color: #0d6efd;
   border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(13, 110, 253, 0.3);
   padding: 0.4rem 0.9rem;
+  color: #fff;
+  border: none;
+}
+
+.btn-voltar a {
+  text-decoration: none !important;
 }
 
 .btn-voltar:hover {
@@ -167,4 +172,65 @@ ul li {
     flex-direction: column;
     gap: 0.5rem;
   }
+}
+
+/* ======= FORMULÁRIO ======= */
+form {
+  width: 100%;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  color: #0b2042;
+  margin-bottom: 0.4rem;
+}
+
+/* Inputs */
+.form-control {
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Checkbox */
+.form-check {
+  margin-bottom: 0.35rem;
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-label {
+  cursor: pointer;
+  color: #333;
+}
+
+/* Botões do formulário */
+form .btn {
+  padding: 0.45rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Botão salvar */
+form .btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+form .btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* Botão cancelar */
+form .btn-secondary {
+  border-radius: 8px;
 }
