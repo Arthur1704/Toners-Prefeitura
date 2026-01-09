@@ -71,5 +71,18 @@ public class TonerService {
         tonerRepository.save(toner);
     }
 
+    public List<Toner> findAllWithPrinters() {
+        return tonerRepository.findAllWithPrinters();
+    }
+
+
+    public void atualizarQuantidade(Long id, int quantidade) {
+        Toner toner = tonerRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Toner não encontrado"));
+
+        toner.setQuantity(quantidade);
+        tonerRepository.save(toner);
+    }
+
 
 }

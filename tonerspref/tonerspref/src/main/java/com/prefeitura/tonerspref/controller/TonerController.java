@@ -31,7 +31,7 @@ public class TonerController {
 
     @GetMapping("/inserirToner")
     public ModelAndView viewInserirTonerPage() {
-        
+
         ModelAndView mv = new ModelAndView("inserirToner");
         mv.addObject("printers", printerService.findAll());
 
@@ -54,5 +54,24 @@ public class TonerController {
         }
         return new ModelAndView("redirect:/toners");
         
+    }
+
+    @PostMapping("/toners/atualizarQuantidade")
+    public ModelAndView atualizarQuantidadeToner(
+        @RequestParam Long id,
+        @RequestParam int quantidade
+    ) {
+        Toner toner = tonerService.findById(id);
+        if (toner != null) {
+            toner.setQuantity(quantidade);
+            tonerService.update(toner);
+        }
+        return new ModelAndView("redirect:/toners");
+    }
+
+    @PostMapping("/toners/deletar")
+    public ModelAndView deletarToner(@RequestParam Long id) {
+        tonerService.delete(id);
+        return new ModelAndView("redirect:/toners");
     }
 }
