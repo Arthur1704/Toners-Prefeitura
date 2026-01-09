@@ -18,8 +18,11 @@ public class PrinterController {
 
     @GetMapping("/printer")
     public ModelAndView viewPrinterPage() {
-        return new ModelAndView("printer");
-    }
+
+        ModelAndView mv = new ModelAndView("printer");
+        mv.addObject("printers", printerService.findAll());
+        return mv;
+    }   
 
     @GetMapping("/inserirPrinter")
     public ModelAndView viewInserirPrinterPage() {

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.prefeitura.tonerspref.Model.DataBase.repositories.PrinterRepository;
 import com.prefeitura.tonerspref.Model.DataBase.repositories.TonerRepository;
+import com.prefeitura.tonerspref.Model.entities.Printer;
 import com.prefeitura.tonerspref.Model.entities.Toner;
 
 @Service
@@ -14,6 +16,9 @@ public class TonerService {
 
     @Autowired
     TonerRepository tonerRepository;
+
+    @Autowired
+    private PrinterRepository printerRepository;
 
     public void insert(Toner toner){
         try{
@@ -56,6 +61,15 @@ public class TonerService {
             System.out.println("Erro ao atualizar toner: " + e.getMessage());
         }
     }   
+
+    public void salvarComImpressoras(Toner toner, List<Long> printerIds) {
+
+        List<Printer> printers = printerRepository.findAllById(printerIds);
+
+        toner.setPrinters(printers);
+
+        tonerRepository.save(toner);
+    }
 
 
 }

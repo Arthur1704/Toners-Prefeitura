@@ -1,5 +1,7 @@
 package com.prefeitura.tonerspref.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.prefeitura.tonerspref.Model.DataBase.services.PrinterService;
 import com.prefeitura.tonerspref.Model.DataBase.services.TonerService;
 import com.prefeitura.tonerspref.Model.entities.Toner;
 
@@ -15,6 +18,9 @@ public class TonerController {
 
     @Autowired
     private TonerService tonerService;
+
+    @Autowired
+    private PrinterService printerService;
 
     @GetMapping("/toners")
     public ModelAndView viewTonersPage() {
@@ -25,12 +31,28 @@ public class TonerController {
 
     @GetMapping("/inserirToner")
     public ModelAndView viewInserirTonerPage() {
-        return new ModelAndView("inserirToner");
+        
+        ModelAndView mv = new ModelAndView("inserirToner");
+        mv.addObject("printers", printerService.findAll());
+
+        return mv;
     }
 
     @PostMapping("/toners/salvar")
-    public ModelAndView inserirToner(@RequestParam String modelo, @RequestParam int quantidade) {
-        tonerService.insert(new Toner(modelo, quantidade));
+    public ModelAndView inserirToner(
+        @RequestParam String modelo,
+        @RequestParam int quantidade,
+        @RequestParam List<Long> printerIds
+    ) {
+
+        Toner toner = new Toner(modelo, quantidade);
+
+        if (printerIds != null && !printerIds.isEmpty()) {
+            tonerService.salvarComImpressoras(toner, printerIds);
+        } else {
+            tonerService.insert(toner); 
+        }
         return new ModelAndView("redirect:/toners");
+        
     }
 }

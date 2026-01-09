@@ -71,8 +71,8 @@ public class Toner {
         return printers;
     }
 
-    public void addPrinters(Printer printers) {
-        this.printers.add(printers);
+    public void setPrinters(List<Printer> printers) {
+    this.printers = printers;
     }
 
     @Override
