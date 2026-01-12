@@ -14,7 +14,7 @@ public class HomeController {
     private TonerService tonerService;
    
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public ModelAndView viewHomePage() {
         return new ModelAndView("index");
     }
