@@ -48,10 +48,12 @@
               <li th:each="printer : ${toner.printers}" th:text="${printer.model}"></li>
             </ul>
           </td>
-          <button class="btn btn-primary btn-sm btn-diminuir" th:data-id="${toner.id}"
+          <td>
+            <button class="btn btn-primary btn-sm btn-diminuir" th:data-id="${toner.id}"
             th:data-quantidade="${toner.quantity}">
             Saiu
           </button>
+          </td>
         </tr>
       </tbody>
     </table>

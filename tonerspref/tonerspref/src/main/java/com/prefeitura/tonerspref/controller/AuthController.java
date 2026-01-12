@@ -18,7 +18,7 @@ public class AuthController {
     @PostMapping("/login")
     public ModelAndView logar(@RequestParam String name, @RequestParam String password) {
         if (loginDB.validateLogin(name, password)) {
-            ModelAndView mv = new ModelAndView("pageHome");
+            ModelAndView mv = new ModelAndView("redirect:/home");
             return mv;
         } else {
             ModelAndView mv = new ModelAndView("index");
