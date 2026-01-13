@@ -42,7 +42,7 @@
         <tr th:each="toner : ${toners}">
           <td th:text="${toner.id}"></td>
           <td th:text="${toner.model}"></td>
-          <td th:text="${toner.quantity}"></td>
+          <td th:id="'qtd-' + ${toner.id}" th:text="${toner.quantity}"></td>
           <td>
             <ul>
               <li th:each="printer : ${toner.printers}" th:text="${printer.model}"></li>

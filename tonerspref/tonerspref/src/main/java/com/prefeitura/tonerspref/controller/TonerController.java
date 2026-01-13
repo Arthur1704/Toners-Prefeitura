@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.prefeitura.tonerspref.Model.DataBase.services.PrinterService;
@@ -73,5 +74,24 @@ public class TonerController {
     public ModelAndView deletarToner(@RequestParam Long id) {
         tonerService.delete(id);
         return new ModelAndView("redirect:/toners");
+    }
+
+    @PostMapping("/toners/diminuir")
+    @ResponseBody
+    public Integer diminuirQuantidadeToner(
+        @RequestParam Long id
+    ) {
+        Toner toner = tonerService.findById(id);
+
+        if (toner != null) {
+            int novaQuantidade = toner.getQuantity() - 1;
+            if (novaQuantidade < 0) {
+                novaQuantidade = 0;
+            }
+            toner.setQuantity(novaQuantidade);
+            tonerService.update(toner);
+            return novaQuantidade;
+        }
+        return null;
     }
 }
