@@ -33,6 +33,19 @@ public class PrinterController {
     public ModelAndView inserirPrinter(@RequestParam String modelo) {
         printerService.insert(new Printer(modelo));
         return new ModelAndView("redirect:/printer");
-        
+    }
+
+    @PostMapping("printer/atualizar")
+    public ModelAndView atualizarPrinter(@RequestParam String modelo, @RequestParam Long id){
+        Printer printer = printerService.findById(id);
+        printer.setModel(modelo);
+        printerService.update(printer);
+        return new ModelAndView("redirect:/printer");
+    }
+
+    @PostMapping("/printer/deletar")
+    public ModelAndView deletarPrinter(@RequestParam Long id){
+        printerService.delete(id);
+        return new ModelAndView("redirect:/printer");
     }
 }
