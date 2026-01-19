@@ -57,14 +57,17 @@ public class TonerController {
         
     }
 
-    @PostMapping("/toners/atualizarQuantidade")
+    @PostMapping("/toners/atualizar")
     public ModelAndView atualizarQuantidadeToner(
         @RequestParam Long id,
+        @RequestParam String modelo,
         @RequestParam int quantidade
     ) {
         Toner toner = tonerService.findById(id);
         if (toner != null) {
+            toner.setModel(modelo);
             toner.setQuantity(quantidade);
+            
             tonerService.update(toner);
         }
         return new ModelAndView("redirect:/toners");

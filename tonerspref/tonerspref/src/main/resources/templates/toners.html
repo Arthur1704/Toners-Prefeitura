@@ -43,7 +43,7 @@
                     <td th:text="${toner.quantity}"></td>
                     <td>
                         <button class="btn btn-primary btn-sm btn-editar" th:data-id="${toner.id}"
-                            th:data-quantidade="${toner.quantity}">
+                            th:data-quantidade="${toner.quantity}" th:data-model="${toner.model}">
                             Editar
                         </button>
 
@@ -62,15 +62,20 @@
     <div class="modal fade" id="modalEditar" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" action="/toners/atualizarQuantidade">
+                <form method="post" action="/toners/atualizar">
                     <div class="modal-header">
-                        <h5 class="modal-title">Atualizar Quantidade</h5>
+                        <h5 class="modal-title">Atualizar</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
                     <div class="modal-body">
 
                         <input type="hidden" name="id" id="editarId">
+
+                        <div class="mb-3">
+                            <label class="form-label">Modelo</label>
+                            <input type="Text" class="form-control" name="modelo" id="editarModelo" required>
+                        </div>
 
                         <div class="mb-3">
                             <label class="form-label">Quantidade</label>

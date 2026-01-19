@@ -6,12 +6,14 @@ $(document).ready(function(){
     $('.btn-editar').on('click', function(){
 
         //Pega os dados do botão clicado
-        const id = $(this).data('id');
-        const quantidade = $(this).data('quantidade');
+        const id = $(this).attr('data-id');
+        const quantidade = $(this).attr('data-quantidade');
+        const modelo = $(this).attr('data-model')
 
         //Preeche os dados do modal
         $('#editarId').val(id);
         $('#editarQuantidade').val(quantidade);
+        $('#editarModelo').val(modelo);
 
         //Abre o modal
         $('#modalEditar').modal('show');
