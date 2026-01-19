@@ -15,6 +15,7 @@ public interface TonerRepository extends JpaRepository<Toner, Long>{
         SELECT DISTINCT t
         FROM Toner t
         LEFT JOIN FETCH t.printers
+        WHERE t.quantity > 0
         ORDER BY t.id
     """)
     List<Toner> findAllWithPrinters();
